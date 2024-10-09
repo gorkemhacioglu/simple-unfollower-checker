@@ -67,7 +67,7 @@
         // Update the selector for the modal containing the "Following" list
         let modal = document.querySelector('div.xyi19xy.x1ccrb07.xtf3nb5.x1pc53ja.x1lliihq.x1iyjqo2.xs83m0k.xz65tgg.x1rife3k.x1n2onr6');
         if (!modal) {
-            console.error("Unable to find the follower list modal.");
+            throw new Error("Unable to retrieve your follower list. Instagram sometimes limits visibility to reduce workload. Please try again later.");
             return [];
         }
 
@@ -122,12 +122,12 @@
         var linkClicked = await clickFollowingLink();
         if (linkClicked) {
             let followingUsernames = await getFollowingUsernames();
-            console.log('Collected Following Usernames:', followingUsernames);
+            //console.log('Collected Following Usernames:', followingUsernames);
 
             linkClicked = await clickFollowersLink();
             if (linkClicked) {
                 let followerUsernames = await getFollowerUsernames();
-                console.log('Collected Follower Usernames:', followerUsernames);
+                //console.log('Collected Follower Usernames:', followerUsernames);
 
                 // Convert followerUsernames into a Set for efficient lookup
                 let followerUsernamesSet = new Set(followerUsernames);
@@ -140,7 +140,7 @@
         }
 
     } catch (error) {
-        console.error("An error occurred:", error);
+        console.error("Oh no!:", error);
     }
 
     // Function to click the 'Following' link and open the modal
